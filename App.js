@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useState, useEffect } from 'react';
+import { Text } from 'react-native';
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync(); // Prevent auto-hiding
+
+      // Your app initialization logic, e.g.,
+      // - Preload fonts
+      // - Make API calls
+      // - Perform any other background tasks
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate some loading time
+
+      setIsReady(true);
+    }
+
+    prepare();
+  }, []);
+
+  if (!isReady) {
+    return null; // Return nothing while app is loading
+  }
+
+  // Call SplashScreen.hideAsync() when your app is ready to display content
+  SplashScreen.hideAsync(); // Hide the splash screen
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Text>Hello</Text>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -5,7 +5,13 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+  "orientation": "portrait",
+  "splash": {
+    "image": "./assets/post.jpeg",
+    "resizeMode": "contain",
+    "backgroundColor": "#FFFFFF"
+  }
   },
   "name": "noovies"
 }
