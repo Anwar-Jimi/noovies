@@ -1,20 +1,16 @@
+import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
+import Tabs from './navigation/Tabs';
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     async function prepare() {
-      await SplashScreen.preventAutoHideAsync(); // Prevent auto-hiding
-
-      // Your app initialization logic, e.g.,
-      // - Preload fonts
-      // - Make API calls
-      // - Perform any other background tasks
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate some loading time
-
+      await SplashScreen.preventAutoHideAsync();
+      await new Promise(resolve => setTimeout(resolve, 2000));
       setIsReady(true);
     }
 
@@ -22,13 +18,14 @@ export default function App() {
   }, []);
 
   if (!isReady) {
-    return null; // Return nothing while app is loading
+    return null;
   }
 
-  // Call SplashScreen.hideAsync() when your app is ready to display content
-  SplashScreen.hideAsync(); // Hide the splash screen
+  SplashScreen.hideAsync();
 
   return (
-    <Text>Hello</Text>
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
   );
 }
