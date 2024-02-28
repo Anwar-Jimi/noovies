@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
@@ -16,7 +16,6 @@ export default function App() {
 
     prepare();
   }, []);
-
   if (!isReady) {
     return null;
   }
